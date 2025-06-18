@@ -1,2 +1,2 @@
 # tienda-ropa-nacho
-Proyecto primera parte
+Proyecto sobre una tienda de ropa
