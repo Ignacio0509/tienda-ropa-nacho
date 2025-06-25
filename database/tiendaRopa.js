@@ -20,3 +20,22 @@ db.Ventas.aggregate([
   }
 ]);
 
+//Lista de todaslas prendas que tienen al menos una venta
+db.Ventas.aggregate([
+  {
+    $lookup: {
+      from: "Marcas",
+      localField: "Marcas.marcaId",
+      foreignField: "nombreMarca",
+      as: "info_marcas"
+    }
+  },
+  { $unwind: "$info_marcas" },
+  {
+    $group: {
+      _id: {
+        marcaId: "$info_marcas.nombreMarca",
+      }
+    }
+  }
+]);
