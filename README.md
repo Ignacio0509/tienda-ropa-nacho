@@ -15,15 +15,17 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
   "rol": "cliente",
   "fechaRegistro": "2025-06-20"
 }
-
-//Marcas
+```
+### Marcas
+```json
 {
   "nombreMarca": "Nike",
   "paisOrigen": "Estados Unidos",
   "fechaFundacion": "1964-01-25"
 }
-
-// Prendras
+```
+### Prendras
+```json
 {
   "nombrePrenda": "Camiseta Deportiva",
   "marcaId": "1", 
@@ -33,8 +35,9 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
   "stock": 150,
   "categoria": "Deportiva"
 }
-
-//Ventas
+```
+### Ventas
+```json
 {
   "usuarioId": "305340427",
   "fechaVenta": "2025-06-25",
@@ -47,7 +50,7 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
   ],
   "totalVenta": 50.00
 }
-
+```
 ## Integrantes del Proyecto
-* [Ignacio Cedeño Martínez]
+Ignacio Cedeño Martínez
 
