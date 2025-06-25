@@ -49,4 +49,5 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
 }
 
 ## Integrantes del Proyecto
-Ignacio Cedeño Martínez
+* [Ignacio Cedeño Martínez]
+
