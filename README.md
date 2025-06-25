@@ -36,7 +36,7 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
 ### Prendras
 ```json
 {
-  ""prendaId": "1",
+  "prendaId": "1",
   "nombrePrenda": "Camiseta Deportiva",
   "marcaId": "1", 
   "talla": "M",
