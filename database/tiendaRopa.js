@@ -20,7 +20,7 @@ db.Ventas.aggregate([
   }
 ]);
 
-//Lista de todaslas prendas que tienen al menos una venta
+//Lista de todas las prendas que tienen al menos una venta
 db.Ventas.aggregate([
   {
     $lookup: {
@@ -39,3 +39,6 @@ db.Ventas.aggregate([
     }
   }
 ]);
+
+//Prendas vendidas y su cantidad restante en stock
+//Cantidad vendida de prendas por fecha y fíltrala con una fecha especifica
