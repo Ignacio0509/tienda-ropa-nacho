@@ -1,4 +1,4 @@
-# Primer Proyecto- tienda-ropa-nacho
+# Primer Proyecto  tienda-ropa-nacho
 
 ## Descripción del Proyecto
 Este proyecto implementa una base de datos NoSQL para una tienda de ropa
