@@ -12,28 +12,38 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
   "usuarioId": "305340427",
   "nombre": "Ignacio Cedeño",
   "email": "luis.ignacio.cedeno.martinez@outlook.com",
-  "rol": "cliente",
-  "fechaRegistro": "2025-06-20"
+  "rol": "cliente"
 }
 ```
 ### Marcas
 ```json
 {
-  "nombreMarca": "Nike",
-  "paisOrigen": "Estados Unidos",
-  "fechaFundacion": "1964-01-25"
+  "marcaId": "1",
+  "nombreMarca": "Nike"
+}
+```
+### Categorias
+```json
+{
+  "categoriaId": "1",
+  "nombreCategoria": "Deportiva"
+},
+{
+  "categoriaId": "2",
+  "nombreCategoria": "Formal"
 }
 ```
 ### Prendras
 ```json
 {
+  ""prendaId": "1",
   "nombrePrenda": "Camiseta Deportiva",
   "marcaId": "1", 
   "talla": "M",
   "color": "Negro",
   "precio": 25.00,
   "stock": 150,
-  "categoria": "Deportiva"
+  "categoriaId": "1"
 }
 ```
 ### 🧾 Ventas
@@ -41,11 +51,11 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
 {
   "usuarioId": "305340427",
   "fechaVenta": "2025-06-25",
+  "numeroVenta": "1",
   "items": [
     {
       "prendaId": "1", 
-      "cantidad": 2,
-      "precioUnitario": 25.00
+      "cantidad": 2
     }
   ],
   "totalVenta": 50.00
