@@ -6,7 +6,7 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
 
 ## Colecciones y Ejemplos JSON
 
-### Usuarios
+### 👥 Usuarios
 ```json
 {
   "usuarioId": "305340427",
@@ -36,7 +36,7 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
   "categoria": "Deportiva"
 }
 ```
-### Ventas
+### 🧾 Ventas
 ```json
 {
   "usuarioId": "305340427",
@@ -51,6 +51,6 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
   "totalVenta": 50.00
 }
 ```
-## Integrantes del Proyecto
+## 👤 Integrantes del Proyecto
 Ignacio Cedeño Martínez
 
