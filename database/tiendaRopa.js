@@ -69,42 +69,178 @@ db.Usuarios.updateOne(
   }
 );
 
-///Cantidad vendida de prendas por fecha específica
+//Consultas
+
+//Obtener lacantidad vendida de prendas por fecha y filtrada con una fecha específica
 db.Ventas.aggregate([
   {
-    $match: {
-      fechaVenta: {
-        $eq: new Date("2025-06-25") 
-      }
+    $match: { //Filtrar por una fecha específica.
+      fechaVenta: "27/07/1975"
     }
   },
   {
-    $group: {
+    $unwind: "$items" //Descomponer el arreglo items para trabajar con cada prenda vendida individualmente.
+  },
+  {
+    $group: { //Agrupar por la fecha de venta y sumar la cantidad de prendas vendidas.
       _id: "$fechaVenta",
-      total_prendas_vendidas: { $sum: "$totalVenta" }
+      totalPrendasVendidas: { $sum: "$items.cantidad" }
     }
   }
 ]);
 
-//Lista de todas las prendas que tienen al menos una venta
+//Resultado esperado
+[
+  {
+    "_id": "10/06/2025",
+    "totalPrendasVendidas": 2
+  }
+]
+
+//Obtener el listado de todas las marcas que tienen al menos unaventa
 db.Ventas.aggregate([
   {
-    $lookup: {
-      from: "Marcas",
-      localField: "Marcas.marcaId",
-      foreignField: "nombreMarca",
-      as: "info_marcas"
+    $unwind: "$items" //Descomponer ($unwind) los items de la venta.
+  },
+  {
+    $lookup: { //Unir ($lookup) cada prenda vendida desde items.prendaId con la colección Prendas.
+      from: "Prendas",
+      localField: "items.prendaId",
+      foreignField: "prendaId",
+      as: "prenda"
     }
   },
-  { $unwind: "$info_marcas" },
   {
-    $group: {
-      _id: {
-        marcaId: "$info_marcas.nombreMarca",
-      }
+    $unwind: "$prenda"
+  },
+  {
+    $lookup: { //*Unir ($lookup) con la colección Marcas, usando marcaId desde Prendas.
+      from: "Marcas",
+      localField: "prenda.marcaId",
+      foreignField: "marcaId",
+      as: "marca"
+    }
+  },
+  {
+    $unwind: "$marca"
+  },
+  {
+    $group: { //Agrupar ($group) por nombreMarca para eliminar duplicados (una marca puede aparecer en múltiples
+      _id: "$marca.marcaId",
+      nombreMarca: { $first: "$marca.nombreMarca" }
+    }
+  },
+  {
+    $project: { //($project) solo muestra el nombre de la marca.
+      _id: 0,
+      nombreMarca: 1
     }
   }
 ]);
+//Resultñado esperado
+[
+  {
+    "nombreMarca": "Adidas"
+  }
+]
 
-//Prendas vendidas y su cantidad restante en stock
-//Cantidad vendida de prendas por fecha y fíltrala con una fecha especifica
+
+//Obtener las prendas vendidas y su cantidad restante en stock
+db.Ventas.aggregate([
+  {
+    $unwind: "$items" //Descompone los items para trabajar prenda por prenda.
+  },
+  {
+    $group: { //Agrupa por prendaId y suma las cantidades vendidas.
+      _id: "$items.prendaId",
+      cantidadVendida: { $sum: "$items.cantidad" }
+    }
+  },
+  {
+    $lookup: { //Une con la colección Prendas para traer información adicional, como el nombrePrenda y el stock
+      from: "Prendas",
+      localField: "_id",
+      foreignField: "prendaId",
+      as: "prenda"
+    }
+  },
+  {
+    $unwind: "$prenda"
+  },
+  {
+    $project: { //Limpia y presenta los campos deseados.
+      _id: 0,
+      prendaId: "$_id",
+      nombrePrenda: "$prenda.nombrePrenda",
+      cantidadVendida: 1,
+      stock: "$prenda.stock"
+    }
+  }
+]);
+//Resultado esperado
+[
+  {
+    "prendaId": 1,
+    "nombrePrenda": "Camisa",
+    "cantidadVendida": 2,
+    "stock": 8
+  }
+]
+
+//Obtener el listado de las 5 marcas mas vendidas y su cantidad de ventas
+db.Ventas.aggregate([
+  {
+    $unwind: "$items" // para tratar cada prenda vendida individualmente.
+  },
+  {
+    $lookup: { //$lookup a Prendas: para saber a qué prenda corresponde cada prendaId.
+      from: "Prendas",
+      localField: "items.prendaId",
+      foreignField: "prendaId",
+      as: "prenda"
+    }
+  },
+  {
+    $unwind: "$prenda"
+  },
+  {
+    $lookup: {// $lookup a Marcas: para obtener el nombreMarca desde marcaId.
+      from: "Marcas",
+      localField: "prenda.marcaId",
+      foreignField: "marcaId",
+      as: "marca"
+    }
+  },
+  {
+    $unwind: "$marca"
+  },
+  {
+    $group: { //$group por nombreMarca: suma de cantidades vendidas por marca.
+      _id: "$marca.nombreMarca",
+      cantidadVendida: { $sum: "$items.cantidad" }
+    }
+  },
+  {
+    $sort: { //$sort + $limit: ordenar descendente y limita a las 5 más vendidas.
+      cantidadVendida: -1
+    }
+  },
+  {
+    $limit: 5
+  },
+  {
+    $project: { //$project: limpia el resultado y lo deja legible.
+      _id: 0,
+      nombreMarca: "$_id",
+      cantidadVendida: 1
+    }
+  }
+]);
+//Resultado esperado
+
+[
+  { "nombreMarca": "Adidas", "cantidadVendida": 2 },
+  { "nombreMarca": "Nike", "cantidadVendida": 1 },
+  ...
+]
+
