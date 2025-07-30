@@ -64,3 +64,122 @@ utilizando MongoDB, gestionando usuarios, marcas, prendas y ventas
 ## 👤 Integrantes del Proyecto
 Ignacio Cedeño Martínez
 
+##   Endpoints de la API - Tienda
+
+### 1. Obtener todos los libros
+
+* **Metodo:** ´GET´
+* **Endpoint:** ´´
+* **Descripción:** Obtiene una lista de todas las prendas disponibles en el sistema
+
+´´´http
+GET link de la carpeta de las prendas
+´´´
+
+
+**Ejemplo de respuesta:**
+
+´´´json
+[
+  {
+    
+  }
+]
+
+
+---
+
+### 2. Obtener una prenda por ID
+
+* **Metodo:** ´Get´
+* **Endpoint:** ´´
+* **Descripción:** Obtiene la información de una prenda en especifico usando su ID
+
+´´´http
+GET
+´´´
+
+**Ejemplo de respuesta:**
+
+´´´json
+{
+
+}
+
+---
+
+### 3. Insertar una prenda nueva
+
+* **Metodo:** ´Post´
+* **Endpoint:** ´´
+* **Descripción:** Inserta una prenda nueva en la base de datos
+
+´´´http
+Post
+´´´
+
+**Cuerpo de la petición (JSON):**
+
+´´´json
+{
+
+}
+
+**Ejemplo de respuesta:**
+
+´´´json
+{
+"mensaje": "Prenda insertada exitosamente"
+}
+´´´
+
+---
+
+
+### 4. Actualizar una prenda por ID
+
+* **Metodo:** ´Put´
+* **Endpoint:** ´´
+* **Descripción:** Actualiza la información de una prenda en especifico
+
+´´´http
+PUT
+´´´
+
+**Cuerpo de la petición (JSON):**
+
+´´´json
+{
+
+}
+´´´
+
+**Ejemplo de respuesta**
+
+´´´json
+{
+  "mensaje": "Prenda actualizada exitosamente"
+}
+´´´
+
+
+---
+
+
+### 5. Eliminar un libro por ID
+
+* **Metodo:** ´Delete´
+* **Endpoint:** ´´
+* **Descripción:** Elimina una prenda en especifico de la base de datos
+
+´´´http
+DELETE
+´´´
+
+**Ejemplo de respuesta:**
+
+´´´json
+{
+  "mensaje": "Prenda eliminada exitosamnete"
+}
+´´´
