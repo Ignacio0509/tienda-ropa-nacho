@@ -13,11 +13,11 @@ def create_app():
     # Importante esto, esto es para que funcione el CORS y no tener problemas de seguridad.
     CORS(app)
 
-    from .controllers.libros import libros_endpoints
+    from .controllers.prenda import libros_endpoints
     from .controllers.usuarios import usuarios_endpoint
 
-    app.register_blueprint(libros_endpoints, url_prefix="/libreria/api/v1")
-    app.register_blueprint(usuarios_endpoint, url_prefix="/libreria/api/v1")
+    app.register_blueprint(libros_endpoints, url_prefix="/tienda-ropa-nacho/API/app")
+    app.register_blueprint(usuarios_endpoint, url_prefix="/tienda-ropa-nacho/API/app")
 
 
     #CORS(app, origins=["http://localhost:3000"])
