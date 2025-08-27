@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form action="{{ url_for('edit_marca', item_id=marca._id) }}" method="POST">
+        <label for="nombreMarca">Nombre de la Marca:</label>
+        <input type="text" id="nombreMarca" name="nombreMarca" value="{{ marca.nombreMarca }}" required>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+{% endblock %}

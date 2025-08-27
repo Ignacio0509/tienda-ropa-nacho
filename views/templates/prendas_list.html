@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Gestión de Prendas</h1>
+
+    <h2>Listado de Prendas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Marca</th>
+                <th>Talla</th>
+                <th>Color</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prenda in prendas %}
+            <tr>
+                <td>{{ prenda.nombrePrenda }}</td>
+                <td>{{ prenda.nombreMarca }}</td>
+                <td>{{ prenda.talla }}</td>
+                <td>{{ prenda.Color }}</td>
+                <td>{{ prenda.precio }}</td>
+                <td>{{ prenda.stock }}</td>
+                <td>{{ prenda.categoriaId }}</td>
+                <td>
+                    <a href="{{ url_for('edit_prenda', item_id=prenda._id) }}">Editar</a>
+                    <a href="{{ url_for('delete_prenda', item_id=prenda._id) }}" onclick="return confirm('¿Estás seguro de que quieres eliminar esta prenda?');">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Crear Nueva Prenda</h2>
+    <form action="{{ url_for('prendas') }}" method="POST">
+        <label for="nombrePrenda">Nombre de la Prenda:</label>
+        <input type="text" id="nombrePrenda" name="nombrePrenda" required>
+        
+        <label for="marcaId">Marca:</label>
+        <select id="marcaId" name="marcaId" required>
+            {% for marca in marcas_disponibles %}
+            <option value="{{ marca._id }}">{{ marca.nombreMarca }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="talla">Talla:</label>
+        <input type="text" id="talla" name="talla" required>
+        
+        <label for="Color">Color:</label>
+        <input type="text" id="Color" name="Color" required>
+        
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" required>
+        
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" required>
+        
+        <label for="categoriaId">Categoría ID:</label>
+        <input type="text" id="categoriaId" name="categoriaId" required>
+
+        <button type="submit">Crear Prenda</button>
+    </form>
+{% endblock %}

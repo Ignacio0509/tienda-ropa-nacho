@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form action="{{ url_for('edit_prenda', item_id=prenda._id) }}" method="POST">
+        <label for="nombrePrenda">Nombre de la Prenda:</label>
+        <input type="text" id="nombrePrenda" name="nombrePrenda" value="{{ prenda.nombrePrenda }}" required>
+        
+        <label for="marcaId">Marca:</label>
+        <select id="marcaId" name="marcaId" required>
+            {% for marca in marcas_disponibles %}
+            <option value="{{ marca._id }}" {% if prenda.marcaId == marca._id %}selected{% endif %}>{{ marca.nombreMarca }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="talla">Talla:</label>
+        <input type="text" id="talla" name="talla" value="{{ prenda.talla }}" required>
+        
+        <label for="Color">Color:</label>
+        <input type="text" id="Color" name="Color" value="{{ prenda.Color }}" required>
+        
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" value="{{ prenda.precio }}" required>
+        
+        <label for="stock">Stock:</label>
+        <input type="number" id="stock" name="stock" value="{{ prenda.stock }}" required>
+        
+        <label for="categoriaId">Categoría ID:</label>
+        <input type="text" id="categoriaId" name="categoriaId" value="{{ prenda.categoriaId }}" required>
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+{% endblock %}
