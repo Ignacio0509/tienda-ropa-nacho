@@ -183,3 +183,26 @@ DELETE
   "mensaje": "Prenda eliminada exitosamnete"
 }
 ´´´
+
+ ### 6. Crear una nueva marca (POST)
+ -----------------------------
+Método: POST
+
+URL: http://127.0.0.1:5000/api/marcas
+
+Headers:
+
+Content-Type: application/json
+
+Body: Selecciona la opción raw y el formato JSON.
+
+Ejemplo de body:
+
+JSON
+
+´´´
+{
+    "nombreMarca": "Adidas"
+}
+´´´
+ 
