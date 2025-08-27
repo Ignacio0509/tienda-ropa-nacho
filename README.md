@@ -185,22 +185,14 @@ DELETE
 ´´´
 
  ### 6. Crear una nueva marca (POST)
- -----------------------------
-Método: POST
+ 
+* **Método:** ´POST´
+* **Endpoint:** ´http://127.0.0.1:5000/api/marcas´
+* **Descripción:** "Crea una nueva marca"
 
-URL: http://127.0.0.1:5000/api/marcas
+**Ejemplo de respuesta:**
 
-Headers:
-
-Content-Type: application/json
-
-Body: Selecciona la opción raw y el formato JSON.
-
-Ejemplo de body:
-
-JSON
-
-´´´
+´´´json
 {
     "nombreMarca": "Adidas"
 }
