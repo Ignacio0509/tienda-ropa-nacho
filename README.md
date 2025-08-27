@@ -200,3 +200,53 @@ DELETE
 }
 ´´´
  
+---
+
+### 7. Obtener todas las marcas (GET)
+
+* **Método:** ´GET´
+* **Endpoint:** ´http://127.0.0.1:5000/api/marcas´
+* **Descripción:** "Obtiene todas las marcas"
+
+**Ejemplo de respuesta:**
+
+Envía la solicitud. La respuesta debería ser una lista JSON con todas las marcas en la base de datos.
+
+---
+
+### 8. Obtener una marca específica (GET)
+
+* **Método:** ´GET´
+* **ENdpoint:** ´http://127.0.0.1:5000/api/marcas/<marca_id>´
+* **Descripción:** "Obtiene el nombre de una marca en especifico por ID"
+
+**Ejemplo de respuesta:**
+
+Reemplaza <marca_id> con el id de una marca que hay creaste. Por ejemplo: http://127.0.0.1:5000/tienda/api/v1/marcas/685b7d5cf3ab5483f94990b4
+
+---
+
+### 9.  Actualizar una marca (PUT)
+
+* **Método:** ´PUT´
+* **Endpoint:** ´http://127.0.0.1:5000/api/marcas<marca_id>´
+* **Descripción:** "Se actualizan los datos de la marca por medio del ID"
+
+
+**Ejemplo de respuesta:**
+
+´´´JSON
+
+{
+    "nombreMarca": "Adidas Original"
+}
+´´´
+---
+
+### 10. Eliminar una marca (DELETE)
+
+* **Método:** ´DELETE´
+* **Endpoint:** ´http://127.0.0.1:5000/api/marcas/<marca_id>´
+* **Descripción:** "Se elimina la marca mediante el ID"
+
+---
