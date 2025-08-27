@@ -184,6 +184,8 @@ DELETE
 }
 ´´´
 
+---
+
  ### 6. Crear una nueva marca (POST)
  
 * **Método:** ´POST´
